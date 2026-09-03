@@ -1,1 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardumes Elétricos - Cleusa das Dores</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --card-bg: #f4f4f9;
+            --primary-color: #0077ff;
+            --base-font-size: 16px;
+        }
 
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #f1f1f1;
+            --card-bg: #1e1e1e;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: var(--base-font-size);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .btn-top {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--card-bg);
+            margin-top: 40px;
+        }
+
+        .lang-options {
+            display: none;
+            margin-top: 15px;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .lang-options.active {
+            display: flex;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--text-color);
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="btn-top" onclick="toggleTheme()">Modo Escuro / Claro</button>
+        <h1>Cardumes Elétricos</h1>
+        <button class="btn-top" onclick="increaseFontSize()">Aumentar Fonte</button>
+    </header>
+
+    <section class="hero">
+        <h2 id="welcome-title">Bem-vindo à Cardumes Elétricos</h2>
+        <p id="welcome-sub">Liderada pela empresária Cleusa das Dores</p>
+        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80" alt="Carro Elétrico da Cardumes Elétricos">
+    </section>
+
+    <main class="content">
+        <h3 id="about-title">Inovação e Sustentabilidade</h3>
+        <p id="about-text">
+            A Cardumes Elétricos traz o futuro da mobilidade sustentável para você. Sob a direção de Cleusa das Dores, oferecemos os veículos elétricos mais eficientes e modernos do mercado.
+        </p>
+    </main>
+
+    <footer>
+        <button class="btn-top" onclick="toggleLanguages()">Idioma / Language / Idioma</button>
+        <div class="lang-options" id="langContainer">
+            <button class="lang-btn" onclick="translateSite('pt')">Português</button>
+            <button class="lang-btn" onclick="translateSite('en')">English</button>
+            <button class="lang-btn" onclick="translateSite('es')">Español</button>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        let currentFontSize = 16;
+        function increaseFontSize() {
+            currentFontSize += 2;
+            if (currentFontSize > 24) currentFontSize = 16;
+            document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
+        }
+
+        function toggleLanguages() {
+            const container = document.getElementById('langContainer');
+            container.classList.toggle('active');
+        }
+
+        const translations = {
+            pt: {
+                title: "Bem-vindo à Cardumes Elétricos",
+                sub: "Liderada pela empresária Cleusa das Dores",
+                aboutTitle: "Inovação e Sustentabilidade",
+                aboutText: "A Cardumes Elétricos traz o futuro da mobilidade sustentável para você. Sob a direção de Cleusa das Dores, oferecemos os veículos elétricos mais eficientes e modernos do mercado."
+            },
+            en: {
+                title: "Welcome to Cardumes Elétricos",
+                sub: "Led by entrepreneur Cleusa das Dores",
+                aboutTitle: "Innovation and Sustainability",
+                aboutText: "Cardumes Elétricos brings the future of sustainable mobility to you. Under the leadership of Cleusa das Dores, we offer the most efficient and modern electric vehicles on the market."
+            },
+            es: {
+                title: "Bienvenido a Cardumes Elétricos",
+                sub: "Liderada por la empresaria Cleusa das Dores",
+                aboutTitle: "Innovación y Sostenibilidad",
+                aboutText: "Cardumes Elétricos le trae el futuro de la movilidad sostenible. Bajo la dirección de Cleusa das Dores, ofrecemos los vehículos eléctricos más eficientes y modernos del mercado."
+            }
+        };
+
+        function translateSite(lang) {
+            document.getElementById('welcome-title').innerText = translations[lang].title;
+            document.getElementById('welcome-sub').innerText = translations[lang].sub;
+            document.getElementById('about-title').innerText = translations[lang].aboutTitle;
+            document.getElementById('about-text').innerText = translations[lang].aboutText;
+        }
+    </script>
+</body>
+</html>
